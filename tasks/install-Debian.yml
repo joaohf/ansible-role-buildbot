@@ -1,13 +1,15 @@
 ---
 
-- name: Install buildbot
+- name: Install build dependencies
   apt:
-    name: "{{ buildbot_package }}"
-    state: present
+    update_cache: yes
+    pkg:
+    - python3-pip
 
-- name: Install extra packages for buildbot
-  apt:
-    name: "{{ buildbot_extra_packages }}"
+- name: Install buildbot
+  pip:
+    name: "buildbot"
+    executable: pip3
     state: present
 
 - name: Install buildbot_extra_pip_packages
