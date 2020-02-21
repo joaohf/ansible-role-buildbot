@@ -1,0 +1,19 @@
+[Unit]
+Description=Buildbot Master %I
+After=network.target
+
+[Service]
+User=buildbot
+Group=buildbot
+WorkingDirectory={{ buildbot_root_dir }}/masters
+ExecStart={{ buildbot_executable }} --verbose start --nodaemon %I
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=always
+ProtectSystem=full
+ProtectHome=yes
+PrivateDevices=yes
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target
+Alias=buildmaster.service
