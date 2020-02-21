@@ -30,3 +30,10 @@
     dest: /etc/default/buildbot
     validate: sh -n %s
   notify: Restart buildbot
+
+- name: Create systemd unit
+  template:
+    src: Ubuntu.systemd.j2
+    dest: /lib/systemd/system/buildmaster@.service
+    validate: sh -n %s
+  notify: Restart buildbot
