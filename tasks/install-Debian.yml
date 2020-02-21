@@ -18,6 +18,12 @@
     executable: pip3
     state: present
 
+- name: Install Amazon Web Services (AWS) SDK
+  pip:
+    name: "boto3"
+    executable: pip3
+    state: present
+
 - name: Create /etc/default/buildbot
   template:
     src: Ubuntu.default.j2
